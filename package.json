@@ -1,0 +1,16 @@
+{
+  "name": "crudNodeAngular",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/RFelixRocha/crudNodeAngular.git",
+  "author": "FelixRocha <felix@jerab.com.br>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^8.6.0",
+    "sequelize": "^6.6.5"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.2.0"
+  }
+}
