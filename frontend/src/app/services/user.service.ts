@@ -88,6 +88,20 @@ export class UserService {
   }
 
   /**
+   * Upload de imagem
+   * */
+   uploadFotoUser(formData: FormData): Observable<FormData>{
+
+    const url = `${this.userUrl}/upload`;
+
+    return this.http.post<FormData>(url,formData)
+    tap((uploadImg: any) => this.log(`Upload realizado com sucesso name: ${uploadImg.name_foto}`)),
+      catchError(this.handleError<any>('uploadFotoUser'))
+
+  }
+
+
+  /**
    * Handle Http operation that failed.
    * Let the app continue.
    * @param operation - name of the operation that failed

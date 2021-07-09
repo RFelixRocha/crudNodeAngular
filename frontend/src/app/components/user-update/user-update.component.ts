@@ -47,8 +47,6 @@ export class UserUpdateComponent implements OnInit {
 
           this.user = user
 
-          console.log(this.user)
-
         },
         (httpError) => this.alertService.error('Error!',`${httpError.error.message}`));
   }
@@ -63,6 +61,10 @@ export class UserUpdateComponent implements OnInit {
         return;
       }
 
+      var formData = new FormData();
+
+      formData.append("foto", event.target.files[0]);
+
       var reader = new FileReader();
 
       reader.readAsDataURL(event.target.files[0])
@@ -70,15 +72,16 @@ export class UserUpdateComponent implements OnInit {
           this.user.foto = event.target.result;
       }
 
+      //Chama a função que faz upload da imagem
+      this.userService.uploadFotoUser(formData).subscribe((uploadImg: any) => {
 
-      var formdata = new FormData();
-      formdata.append("name", "Raimundo Felix");
-      formdata.append("idade", "20");
-      formdata.append("email", "email@gmail.com");
-      formdata.append("foto", event.target.files[0]);
-      formdata.append("escolaridade", "1");
+        this.user.foto = uploadImg.path_foto;
+       
+      },(httpError) => {
+        
+        this.alertService.error('Error!',`${httpError.error.message}`);
+      })
 
-      console.log(formdata);
     }
 
   }
@@ -109,7 +112,7 @@ export class UserUpdateComponent implements OnInit {
         this.alertService.success('Sucesso!',`Usuário ${this.user.name} atualizado com sucesso.`)
         this.router.navigate([`/users/${this.user.id}`]);
       },(httpError) => {
-        console.log(httpError);
+       
         this.alertService.error('Error!',`${httpError.error.message}`);
       })
 

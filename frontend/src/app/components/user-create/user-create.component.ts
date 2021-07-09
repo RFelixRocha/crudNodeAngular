@@ -43,6 +43,10 @@ export class UserCreateComponent implements OnInit {
         return;
       }
 
+      var formData = new FormData();
+
+      formData.append("foto", event.target.files[0]);
+
       var reader = new FileReader();
 
       reader.readAsDataURL(event.target.files[0])
@@ -50,15 +54,16 @@ export class UserCreateComponent implements OnInit {
           this.user.foto = event.target.result;
       }
 
+      //Chama a função que faz upload da imagem
+      this.userService.uploadFotoUser(formData).subscribe((uploadImg: any) => {
 
-      var formdata = new FormData();
-      formdata.append("name", "Raimundo Felix");
-      formdata.append("idade", "20");
-      formdata.append("email", "email@gmail.com");
-      formdata.append("foto", event.target.files[0]);
-      formdata.append("escolaridade", "1");
+        this.user.foto = uploadImg.path_foto;
+       
+      },(httpError) => {
+        console.log(httpError);
+        this.alertService.error('Error!',`${httpError.error.message}`);
+      })
 
-      console.log(formdata);
     }
 
   }
