@@ -35,22 +35,22 @@ export class UserCreateComponent implements OnInit {
 
   addUser(): void{
 
-    let expressaoLetras = /[^a-zA-Z]/g;
-
     this.user.name = this.user.name.trim();
     this.user.email = this.user.email.trim();
 
-    console.log(this.user);
-    console.log(this.user.name.length);
+    if(this.user.escolaridade == 0){
+      this.alertService.info('Atenção!',`Escolha uma opção válida de escolaridade.`)
+      return;
+    }
+
+    if(!this.user.email){
+      this.alertService.info('Atenção!',`O campo e-mail é obrigatório.`)
+      return;
+    }
 
     if (this.user.name.length < 5){
       this.alertService.info('Atenção!',`O campo nome não pode ter menos de 5 caracteres.`)
       return
-    }
-
-    if(this.user.name.match(expressaoLetras)){
-      this.alertService.info('Atenção!',`O campo nome só aceita letras.`)
-      return;
     }
 
     this.userService.addUser(this.user).subscribe(newUser => {

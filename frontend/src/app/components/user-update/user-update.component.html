@@ -1,1 +1,69 @@
-<p>user-update works!</p>
+<nav style="margin-top:10px;--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#" style="text-decoration: none">Home</a></li>
+    <li class="breadcrumb-item"><a routerLink="/users" routerLinkActive="active" style="text-decoration: none">usuários</a></li>
+    <li class="breadcrumb-item active" aria-current="page">atualizar</li>
+  </ol>
+</nav>
+
+<div class="row gy-2 gx-3 align-items-center">
+
+  <div class="col-4">
+
+
+
+  </div>
+  <div class="col-8">
+    <div class="row">
+      <div class="col-6">
+        <label for="name" class="form-label">Nome</label>
+        <input  id="name" name="name" required minlength="5" #name="ngModel" [(ngModel)]="user.name" type="text" class="form-control">
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="">
+          <div *ngIf="name.errors?.required" class="valid-feedback">
+            O campo nome é obrigatório.
+          </div>
+          <div *ngIf="name.errors?.minlength" class="valid-feedback">
+            O campo nome não pode ter menos de 5 caracteres.
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <label for="idade" class="form-label">Idade</label>
+        <input  id="idade" name="idade" #idade="ngModel" [(ngModel)]="user.idade" type="number" class="form-control">
+      </div>
+
+      <div class="col-6 margin-div-user">
+        <label for="email" class="form-label">E-mail</label>
+        <input  id="email" name="email" required #email="ngModel" [(ngModel)]="user.email" type="text" class="form-control" ngModel email="true">
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="">
+          <div *ngIf="email.errors?.required" class="valid-feedback">
+            O campo e-mail é obrigatório.
+          </div>
+          <div *ngIf="email.errors?.email" class="valid-feedback">
+            E-mail inválido.
+          </div>
+        </div>
+      </div>
+      <div class="col-6 margin-div-user">
+        <label for="escolaridade" class="form-label">Escolaridade</label>
+        <select  [(ngModel)]="user.escolaridade" id="escolaridade" class="form-select" name="escolaridade" required #escolaridade="ngModel">
+          <option *ngFor="let formacao of lista_escolaridades; let indice = index" value="{{ indice }}">{{ formacao }}</option>
+        </select>
+        <div *ngIf="escolaridade.invalid && (escolaridade.dirty || escolaridade.touched)" class="">
+          <div *ngIf="escolaridade.errors?.required" class="valid-feedback">
+            O campo escolaridade é obrigatório.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="email.errors?.email else inputInvalido" class="col-12 d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+    <button type="button" disabled class="btn btn-primary"><i class="fa fa-save"></i>&nbsp;Atualizar</button>
+  </div>
+  <ng-template #inputInvalido>
+    <div class="col-12 d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+      <button type="button" (click)="saveUserUpdate()" class="btn btn-primary"><i class="fa fa-save"></i>&nbsp;Atualizar</button>
+    </div>
+  </ng-template>
+</div>

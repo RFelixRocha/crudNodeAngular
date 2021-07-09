@@ -1,1 +1,26 @@
-<p>user-details works!</p>
+<nav style="margin-top:10px;--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#" style="text-decoration: none">Home</a></li>
+    <li class="breadcrumb-item"><a routerLink="/users" routerLinkActive="active" style="text-decoration: none">usuários</a></li>
+    <li class="breadcrumb-item active" aria-current="page">detalhes</li>
+  </ol>
+</nav>
+
+<div class="row align-items-center">
+  <div class="col-xl-3">
+    <img src="..." class="rounded mx-auto d-block" alt="{{ user.name }}">
+  </div>
+  <div class="col-xl-7">
+    <div class="text-start">
+      <p class="text-muted"><strong>Nome:</strong> <span class="ms-2">{{ user.name }}</span></p>
+      <p class="text-muted"><strong>E-mail :</strong> <span class="ms-2">{{ user.email }}</span></p>
+      <p class="text-muted"><strong>Idade :</strong><span class="ms-2">{{ user.idade }} anos</span></p>
+      <p class="text-muted"><strong>Escolaridade :</strong> <span class="ms-2">{{ lista_escolaridades[user.escolaridade] }}</span></p>
+    </div>
+  </div>
+
+  <div class="col-12 d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+    <a class="btn btn-primary" style="margin-right: 5px;" routerLink="/users/update/{{user.id}}" role="button"><i class="fa fa-edit"></i>&nbsp;Alterar</a>
+    <a class="btn btn-danger" (click)="delete(user)" role="button"><i class="fa fa-trash"></i>&nbsp;Deletar</a>
+  </div>
+</div>

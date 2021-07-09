@@ -14,6 +14,7 @@
       <table class="table">
         <thead>
         <tr>
+          <th scope="col">Foto</th>
           <th scope="col">Nome</th>
           <th scope="col">Idade</th>
           <th scope="col">E-mail</th>
@@ -23,8 +24,9 @@
         </thead>
         <tbody>
         <tr *ngFor="let user of users">
+          <td><img src="{{ user.foto }}" class="rounded mx-auto d-block" alt="{{ user.name }}"></td>
           <td>{{ user.name }}</td>
-          <td>{{ user.idade }}</td>
+          <td>{{ user.idade }} anos</td>
           <td>{{ user.email }}</td>
           <td>{{ lista_escolaridades[user.escolaridade] }}</td>
           <td class="text-center">
