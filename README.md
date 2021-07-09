@@ -1,4 +1,4 @@
-## Sistema de Gerenciamento de Dispositivos
+## Sistema de Gerenciamento Usuários
 
 O sistema mostra um CRUD com upload de fotos feito usando Angular v12, Node v12.21.0 e MySql v8.0.20 da Amazon RDS T2 Micro.
 A parte do backend(feito em Nodejs) está rodando em uma instância do Amazon EC2 T2 Micro, e o frontend(Angular) está no Amazon S3 static bucket.
