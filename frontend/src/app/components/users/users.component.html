@@ -1,1 +1,40 @@
-<p>users works!</p>
+<nav style="margin-top:10px;--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#" style="text-decoration: none">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">usuários</li>
+  </ol>
+</nav>
+<div class="row g-3">
+  <div class="col-12 d-grid gap-2 d-md-flex justify-content-md-end">
+    <a class="btn btn-primary" routerLink="/users/create" role="button"><i class="fa fa-plus"></i>&nbsp;Novo usuário</a>
+  </div>
+
+  <div *ngIf="users.length > 0" class="col-12">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">Nome</th>
+          <th scope="col">Idade</th>
+          <th scope="col">E-mail</th>
+          <th scope="col">escolaridade</th>
+          <th scope="col" class="text-center" style="width: 34%">Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.name }}</td>
+          <td>{{ user.idade }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ lista_escolaridades[user.escolaridade] }}</td>
+          <td class="text-center">
+            <a class="btn btn-info" style="margin-right: 5px;" routerLink="/users/{{user.id}}" role="button"><i class="fa fa-eye"></i>&nbsp;Detalhes</a>
+            <a class="btn btn-primary" style="margin-right: 5px;" routerLink="/users/update/{{user.id}}" role="button"><i class="fa fa-edit"></i>&nbsp;Alterar</a>
+            <a class="btn btn-danger" (click)="delete(user)" role="button"><i class="fa fa-trash"></i>&nbsp;Deletar</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
