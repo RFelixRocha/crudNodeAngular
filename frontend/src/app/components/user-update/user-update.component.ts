@@ -53,6 +53,36 @@ export class UserUpdateComponent implements OnInit {
         (httpError) => this.alertService.error('Error!',`${httpError.error.message}`));
   }
 
+  carregarFoto(event: any) {
+
+    if (event.target.files && event.target.files[0]) {
+
+      if(event.target.files[0]['type'].toUpperCase() != "image/png".toUpperCase() && event.target.files[0]['type'].toUpperCase() != "image/jpeg".toUpperCase())
+      {
+        this.alertService.info('Atenção!','Tipo de imagem inválida, selecione o formato PNG ou JPEG.');
+        return;
+      }
+
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0])
+      reader.onload = (event:any) => {
+          this.user.foto = event.target.result;
+      }
+
+
+      var formdata = new FormData();
+      formdata.append("name", "Raimundo Felix");
+      formdata.append("idade", "20");
+      formdata.append("email", "email@gmail.com");
+      formdata.append("foto", event.target.files[0]);
+      formdata.append("escolaridade", "1");
+
+      console.log(formdata);
+    }
+
+  }
+
   saveUserUpdate(): void{
 
     this.user.name = this.user.name.trim();
