@@ -13,7 +13,7 @@ exports.create = (req, res) => {
 
     if (!idade) {
         res.status(422).send({
-            message: "O campo idate não pode ser vazio!"
+            message: "O campo idade não pode ser vazio!"
         });
         return;
     }
@@ -21,12 +21,6 @@ exports.create = (req, res) => {
     if (!email) {
         res.status(422).send({
             message: "O campo e-mail não pode ser vazio!"
-        });
-        return;
-    }
-    if (!foto) {
-        res.status(422).send({
-            message: "O campo foto não pode ser vazio!"
         });
         return;
     }

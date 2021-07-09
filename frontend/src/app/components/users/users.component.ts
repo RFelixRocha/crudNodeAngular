@@ -14,6 +14,7 @@ export class UsersComponent implements OnInit {
 
   users: User[] = []
   lista_escolaridades = [
+    'Selecione ...',
     'Pós-graduado',
     'Graduado',
     'Nível Médio',
