@@ -63,9 +63,26 @@ exports.create = (req, res) => {
 };
 
 //update user
-exports.update = (req, res) => {
+exports.update = async (req, res) => {
 
     const id = req.params.id;
+
+    const user = await User.findOne({where:{id:id}});
+
+    if(user.foto_key !== null && user.foto_key !== '' && (user.foto_key != req.body.foto_key)){
+
+        if(process.env.STORAGE_TYPE === 's3'){
+
+            s3.deleteObject({
+                Bucket: process.env.AWS_BUCKET_NAME,
+                Key: user.foto_key,
+            }).promise();
+    
+        }else{
+            promisify(fs.unlink)(path.resolve(__dirname,'..','..','..','uploads',user.foto_key))
+        }
+
+    }
 
     User.update(req.body, {
         where: { id: id }
