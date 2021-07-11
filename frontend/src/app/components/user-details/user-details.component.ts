@@ -47,8 +47,6 @@ export class UserDetailsComponent implements OnInit {
 
           this.user = user
 
-          console.log(this.user)
-
         },
         (httpError) => this.alertService.error('Error!',`${httpError.error.message}`));
   }
