@@ -1,4 +1,12 @@
-const { User } = require("../models");
+const { User } = require('../models');
+const aws = require('aws-sdk');
+const fs  = require('fs');
+const path = require('path');
+const { promisify } = require('util');
+const insta = this;
+
+const s3 = new aws.S3();
+
 //Cadastro de categoria
 exports.create = (req, res) => {
     // Validate request
@@ -126,9 +134,27 @@ exports.findOne = (req, res) => {
 
 
 // Deleta um usuário
-exports.delete = (req, res) => {
+exports.delete = async (req, res) => {
 
     const id = req.params.id;
+
+    const user = await User.findOne({where:{id:id}});
+
+    if(user.foto_key !== null && user.foto_key !== ''){
+
+        if(process.env.STORAGE_TYPE === 's3'){
+
+            s3.deleteObject({
+                Bucket: process.env.AWS_BUCKET_NAME,
+                Key: user.foto_key,
+            }).promise();
+    
+        }else{
+            promisify(fs.unlink)(path.resolve(__dirname,'..','..','..','uploads',user.foto_key))
+        }
+
+    }
+    
 
     User.destroy({
         where: { id: id }

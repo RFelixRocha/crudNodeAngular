@@ -59,6 +59,7 @@ export class UserCreateComponent implements OnInit {
       this.userService.uploadFotoUser(formData).subscribe((uploadImg: any) => {
 
         this.user.foto_url = uploadImg.url;
+        this.user.foto_key = uploadImg.key;
 
       },(httpError) => {
         console.log(httpError);

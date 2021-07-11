@@ -6,10 +6,7 @@ const multer     = require('multer');
 const multerConfig = require('../../config/multer')
 
 router.post("/upload", multer(multerConfig).single('foto'), (req,res) => {
-
-    console.log(req.body)
-    console.log(req.params)
-
+    
     const { key, location:url='' } = req.file;
 
     if(req.file.Error)
