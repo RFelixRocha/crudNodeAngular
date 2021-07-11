@@ -16,7 +16,8 @@ export class UserCreateComponent implements OnInit {
     name: '',
     idade: 0,
     email: '',
-    foto: '',
+    foto_key: '',
+    foto_url: '',
     escolaridade: 0
   }
 
@@ -51,14 +52,14 @@ export class UserCreateComponent implements OnInit {
 
       reader.readAsDataURL(event.target.files[0])
       reader.onload = (event:any) => {
-          this.user.foto = event.target.result;
+          this.user.foto_url = event.target.result;
       }
 
       //Chama a função que faz upload da imagem
       this.userService.uploadFotoUser(formData).subscribe((uploadImg: any) => {
 
-        this.user.foto = uploadImg.path_foto;
-       
+        this.user.foto_url = uploadImg.url;
+
       },(httpError) => {
         console.log(httpError);
         this.alertService.error('Error!',`${httpError.error.message}`);
@@ -105,7 +106,8 @@ export class UserCreateComponent implements OnInit {
       name: '',
       idade: 0,
       email: '',
-      foto: '',
+      foto_key: '',
+      foto_url: '',
       escolaridade: 0
     }
   }

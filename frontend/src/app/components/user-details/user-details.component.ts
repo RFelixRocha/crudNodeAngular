@@ -17,7 +17,8 @@ export class UserDetailsComponent implements OnInit {
     name: '',
     idade: 0,
     email: '',
-    foto: '',
+    foto_key: '',
+    foto_url: '',
     escolaridade: 0
   }
 
@@ -74,7 +75,7 @@ export class UserDetailsComponent implements OnInit {
             'success'
           )
           this.router.navigate(['/users']);
-          
+
         },(httpError) => this.alertService.error('Error!',`${httpError.error.message}`));
 
       } else if (result.dismiss === Swal.DismissReason.cancel) {}

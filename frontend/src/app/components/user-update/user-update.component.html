@@ -12,12 +12,12 @@
 
     <div class="file-field">
       <div class="centralizar-foto mb-4">
-        <img [src]="user.foto" class="img-fluid" alt="Foto de Perfil">
+        <img [src]="user.foto_url" class="img-fluid" alt="Foto de Perfil">
       </div>
       <div class="d-flex justify-content-center">
         <div class="btn btn-mdb-color btn-rounded float-left">
           <span>Carregar foto</span>
-          <input id="foto" name="foto"  (change)="carregarFoto($event)" type="file">
+          <input id="foto_key" name="foto_key"  (change)="carregarFoto($event)" type="file">
         </div>
       </div>
     </div>

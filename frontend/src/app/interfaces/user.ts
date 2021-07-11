@@ -3,6 +3,7 @@ export interface User {
     name: string;
     idade: number;
     email: string;
-    foto: string;
+    foto_key: string;
+    foto_url: string;
     escolaridade: number;
 }
