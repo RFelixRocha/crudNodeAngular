@@ -24,7 +24,11 @@ module.exports = {
         unique: true,
         allowNull: false
       },
-      foto: {
+      foto_key: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      foto_url: {
         type: Sequelize.STRING,
         allowNull: false
       },

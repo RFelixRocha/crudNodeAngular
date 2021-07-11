@@ -7,12 +7,14 @@ const multerConfig = require('../../config/multer')
 
 router.post("/upload", multer(multerConfig).single('foto'), (req,res) => {
 
+    const { key, location:url='' } = req.file;
+
     if(req.file.Error)
         return res.send({Error:req.file.Error});
 
     return res.send({
-        name_foto:req.file.filename,
-        path_foto:req.file.path
+        key,
+        url:process.env.STORAGE_TYPE === 'local'?`${process.env.APP_URL}/files/${key}`:url
     });
 
 })

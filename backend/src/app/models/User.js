@@ -1,4 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
+
     const User = sequelize.define(
         "User",
         {
@@ -16,10 +17,13 @@ module.exports = (sequelize, DataTypes) => {
                 unique: true,
                 isEmail: true,  
             },
-            foto: DataTypes.STRING,
+            foto_key: DataTypes.STRING,
+            foto_url: DataTypes.STRING,
             escolaridade: DataTypes.INTEGER
         }
     );
+
+    
 
     return User;
 };

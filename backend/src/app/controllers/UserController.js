@@ -2,7 +2,7 @@ const { User } = require("../models");
 //Cadastro de categoria
 exports.create = (req, res) => {
     // Validate request
-    const { name, idade, email, foto, escolaridade } = req.body;
+    const { name, idade, email, foto_key, foto_url,escolaridade } = req.body;
 
     if (!name) {
         res.status(422).send({
@@ -36,7 +36,8 @@ exports.create = (req, res) => {
         name: name,
         idade: idade,
         email: email,
-        foto: foto,
+        foto_key: foto_key,
+        foto_url:foto_url,
         escolaridade: escolaridade
     };
 
